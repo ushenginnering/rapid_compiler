@@ -18,7 +18,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://*rapidcompiler-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = [
+    'https://*rapidcompiler-production.up.railway.app',
+    'localhost'
+    ]
 
 # Application definition
 
@@ -31,6 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user_authentication',
     'rest_framework',
+    'drf_yasg',
+    'coreapi',
 ]
 
 MIDDLEWARE = [
