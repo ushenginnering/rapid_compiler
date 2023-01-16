@@ -1,0 +1,8 @@
+SCHOOL FEES MANAGEMENT
+
+FUNCTIONAL REQUIREMENTS
+- add fees student have paid
+- check if the student have outstanding depth
+- generate list of everybody owing in school and  amount
+- print receipt for fees payment with amount paid and outstanding dept
+- get a track record of previous term payments.
