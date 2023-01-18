@@ -20,7 +20,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
     'https://*rapidcompiler-production.up.railway.app',
-    'localhost'
+    'http://localhost:*'
+    'http://127.0.0.1:*'
     ]
 
 # Application definition
