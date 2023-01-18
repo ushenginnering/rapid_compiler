@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import requests
 
 load_dotenv()  # take environment variables from .env.
 
@@ -74,17 +75,33 @@ WSGI_APPLICATION = 'rapid_compiler.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+def is_connected():
+    try:
+        res = requests.get('https://google.com')
+        return True
+    except requests.exceptions.ConnectionError:
+        print('------------not connected-------------')
+        return False
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('DB_NAME'), 
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PW'),
-        'HOST': os.getenv('DB_HOST'), 
-        'PORT': os.getenv('DB_PORT'),
+if is_connected():
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.getenv('DB_NAME'), 
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PW'),
+            'HOST': os.getenv('DB_HOST'), 
+            'PORT': os.getenv('DB_PORT'),
+        }
     }
-}
+else:
+    print('------------using local database-------------')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
